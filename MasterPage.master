@@ -6,26 +6,48 @@
 <head runat="server">
     <title></title>
 
+
     <link href="Css/Normalize.css" rel="stylesheet" />
     <link href="Css/Style.css" rel="stylesheet" />
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
-    <asp:Image ID="BannerImg" alt="Banner" runat="server" Height="81px" Width="785px" ImageUrl="~/Img/Banner.jpg" />
-    <div id="Menu"></div>
-    <div id="Left"></div>
+    <section id="Banner">
+        <asp:Image ID="BannerImg" CssClass="BannerImg" alt="Banner" runat="server" ImageUrl="~/Img/Banner.jpg" />
+    </section>
 
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
 
-    <div id="Right"></div>
+    <section id="NavContainer">
+        <div id="Nav"></div>
+    </section>
+
+    <div id="Main">
+
+        <section id="Left">
+            <h3 class="ChildContainerHeader">Mest Populære</h3>
+        </section>
+
+
+        <form id="form1" runat="server">
+            <section id="Middle">
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+
+            </section>
+        </form>
+
+        <section id="Right">
+            <h3 class="ChildContainerHeader">Indkøbskurv</h3>
+        </section>
+
+    </div>
+    <!--Main-->
+
     <div id="Footer"></div>
 
 </body>
