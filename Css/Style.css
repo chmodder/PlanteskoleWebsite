@@ -65,43 +65,131 @@ body
     /*Baggrundsfarve (hover):#DFE7C0;*/
 }
 
-/*font-size: 8pt
-color: #90918B
-Baggrundsfarve (normal): #F7F8F3
-Baggrundsfarve (hover): #ECEEE1*/
+    /*--------<Undermenu>-----------*/
+    #Nav ul
+    {
+        padding: 0;
+        margin: 0;
+        float: left;
+    }
+
+        #Nav ul li
+        {
+            display: block;
+            width: 100px;
+            height: 26px;
+            list-style-type: none;
+            float: left;
+            text-align: center;
+        }
+
+    /*Styler tekst i undermenu*/
+    #Nav > ul > li a
+    {
+        text-decoration: none;
+        display: block;
+        height: 26px;
+        line-height: 26px;
+        color: #90918B;
+        font-family: Verdana;
+    }
+
+        /*Styler baggrundsfarven i hovedmenu-elementer ved hover*/
+        #Nav > ul > li a:hover
+        {
+            background-color: #DFE7C0;
+        }
+
+    /*Indstiller undermenuens position*/
+    #Nav > ul > li > ul
+    {
+        /*display: none;*/
+        position: absolute;
+        left: 6px;
+    }
+
+        /*Skjuler undermenuen og arrangerer elementerne på en række og indstiller baggrundsfarven
+          i undermenuens elementer (som man ser, når den bliver vist igen ved hover)*/
+        #Nav > ul > li > ul > li
+        {
+            display: none;
+            float: left;
+            background-color: #F7F8F3;
+        }
+
+    /*Viser undermenuen ved hover*/
+    #Nav > ul > li:hover > ul li
+    {
+        display: inline-block;
+    }
+
+    /*Styler tekststørrelsen i undermenuen*/
+    #Nav > ul > li > ul > li a
+    {
+        font-size: 8pt;
+    }
+
+        /*Styler baggrundsfarven i undermenuens element ved hover*/
+        #Nav > ul > li > ul > li a:hover
+        {
+            background-color: #ECEEE1;
+        }
+
 
 /*Main-----------------------------*/
 
 #Main
 {
     top: 121px;
-    /*bottom: 0;*/
     position: absolute;
     z-index: -1;
     width: 785px;
-    padding: 50px 6px 27px 7px;
+    padding-top: 50px;
     background-color: #ffffff;
 }
 
+/*MainContainer---------------------*/
 
-
-article
+#MainContainer
 {
-    
-    }
+    padding: 0 6px 0 7px;
+}
+
+
 
 #Left
 {
     width: 171px;
     height: 100%;
     float: left;
-    padding-right: 23px;
+    padding: 0 23px 0 0;
 }
+
+    #Left ul
+    {
+        list-style-image: url("../Img/MenuDot.jpg");
+    }
+
+
+
 
 #Middle
 {
     width: 404px;
     float: left;
+}
+
+.HeadersMiddle
+{
+    font-family: Verdana, sans-serif;
+    font-size: 12pt;
+    color: #8AB512;
+}
+
+#TopH1
+{
+    margin-top: 4px;
+    font-weight: bold;
 }
 
 #Right
@@ -124,13 +212,14 @@ links. (statiske overskrifter)*/
     font-size: 10pt;
     color: #8AB512;
     border-bottom: 1px #8AB512 dotted;
+    margin-bottom: 20px;
 }
 
 /*Footer----------------------------*/
 #Footer
 {
-    position: fixed;
-    bottom: 0;
+    margin-top: 34px;
+    float: left;
     width: 785px;
     height: 27px;
     background-color: rgb(139, 181, 19);
