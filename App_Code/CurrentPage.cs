@@ -41,13 +41,17 @@ public class CurrentPage
     //}
     #endregion
 
-    public string GetCurrentPageContent(string currentPageName, string codeName)
+    public void GetCurrentPageContent(string currentPageName)
     {
-        CodeName = codeName;
+
         PageName = currentPageName;
         List<PageContent> DBCurrentPageContent = DataAccessLayer.GetPageContent(PageName);
         CurrentPageContent = DBCurrentPageContent;
+    }
 
+    public string GetElementContent(string codeName)
+    {
+        CodeName = codeName;
 
         foreach (var item in CurrentPageContent)
         {
@@ -59,7 +63,6 @@ public class CurrentPage
 
         }
         return Content;
-
     }
 
 

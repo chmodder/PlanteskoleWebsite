@@ -9,15 +9,13 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        #region TEST
-        ////Test
-
         CurrentPage DefaultPage = new CurrentPage();
         string ThisPageName = DefaultPage.GetCurrentPageName();
+        DefaultPage.GetCurrentPageContent(ThisPageName);
 
-        CurrentPage NewDefaultPage = new CurrentPage(ThisPageName);
 
-        TopH1Lbl.Text = DefaultPage.Content;
+
+        TopH1Lbl.Text = DefaultPage.GetElementContent("TopH1Lbl");
 
         #region Udkommenteret
 
@@ -40,7 +38,6 @@ public partial class _Default : System.Web.UI.Page
         //List<CurrentPage> ContentList = new List<CurrentPage>();
 
         //FUCK THIS SHIT!!
-        #endregion
         #endregion
 
         ShopInfo Address = new ShopInfo();

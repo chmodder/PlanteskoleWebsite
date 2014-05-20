@@ -13,10 +13,6 @@ using System.Web;
 public class DataAccessLayer
 {
 
-
-    private static SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
-    private static SqlCommand Cmd = new SqlCommand();
-
     public DataAccessLayer()
     {
         //
@@ -27,6 +23,8 @@ public class DataAccessLayer
     #region READ
     public static DataTable GetShopInfo()
     {
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
         Cmd.CommandText = @"
             SELECT * FROM ShopInfo";
 
@@ -37,10 +35,11 @@ public class DataAccessLayer
         return dt;
     }
 
-    //    public static ArrayList GetPageContent(string pageName)
+    #region GetPageContent(NoTryCatch)
+    //    public static List<PageContent> GetPageContent(string pageName)
     //    {
     //        Cmd.CommandText = @"
-    //            SELECT Content FROM PageContent
+    //            SELECT CodeName, Content FROM PageContent
     //            INNER JOIN Pages
     //                ON Pages.Id = PageContent.FkPageId
     //            WHERE Pages.PageName = @PageName";
@@ -49,69 +48,76 @@ public class DataAccessLayer
 
     //        Cmd.Connection = Conn;
 
-    //        ArrayList PageContentList = new ArrayList();
+    //        List<PageContent> PageContentList = new List<PageContent>();
+
+    //        Conn.Open();
     //        SqlDataReader Reader = Cmd.ExecuteReader();
 
     //        if (Reader.Read())
     //        {
     //            while (Reader.Read())
     //            {
-    //                PageContentList.Add("CodeName").ToString();
-    //                PageContentList.Add("Content").ToString();
+    //                PageContent TempContent = new PageContent();
+    //                TempContent.Content = (string)Reader["Content"];
+    //                TempContent.CodeName = (string)Reader["CodeName"];
+
+    //                PageContentList.Add(TempContent);
     //            }
     //        }
+    //        Conn.Close();
 
     //        return PageContentList;
     //    }
+    #endregion
 
+    //Returns all Table-rows WHERE Pagename match input parameter
     public static List<PageContent> GetPageContent(string pageName)
     {
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
         Cmd.CommandText = @"
-            SELECT Content FROM PageContent
+            SELECT CodeName, Content FROM PageContent
             INNER JOIN Pages
                 ON Pages.Id = PageContent.FkPageId
-            WHERE Pages.PageName = @PageName";
+            WHERE Pages.PageName = @PageNameInput";
 
-        Cmd.Parameters.Add("@PageName", SqlDbType.NVarChar).Value = pageName;
+        Cmd.Parameters.Add("@PageNameInput", SqlDbType.NVarChar).Value = pageName;
 
         Cmd.Connection = Conn;
 
-
         List<PageContent> PageContentList = new List<PageContent>();
-        SqlDataReader Reader = Cmd.ExecuteReader();
-
-        if (Reader.Read())
+        try
         {
-            while (Reader.Read())
-            {
-                PageContent TempContent = new PageContent();
-                TempContent.Content = (string)Reader["Content"];
-                TempContent.CodeName = (string)Reader["CodeName"];
+            Conn.Open();
+            SqlDataReader Reader = Cmd.ExecuteReader();
 
-                PageContentList.Add(TempContent);
+            if (Reader.Read())
+            {
+                while (Reader.Read())
+                {
+                    PageContent TempContent = new PageContent();
+
+                    TempContent.Content = (string)Reader["Content"];
+                    TempContent.CodeName = (string)Reader["CodeName"];
+
+                    PageContentList.Add(TempContent);
+                }
             }
         }
+
+        catch (Exception ex)
+        {
+            //Handle exception, perhaps log it and do the needful
+        }
+        finally
+        {
+            //Connection should always be closed here so that it will close always
+            Conn.Close();
+        }
+
 
         return PageContentList;
     }
     #endregion
 
-
-    //    //FUCK THIS SHIT!!!
-    //    internal static string GetPageContent(string PageName, string Codename)
-    //    {
-    //        Cmd.CommandText = @"
-    //            SELECT * FROM ShopInfo";
-
-    //        Cmd.Connection = Conn;
-    //        Cmd.Parameters.Add("@PageName", SqlDbType.NVarChar).Value = PageName;
-    //        Cmd.Parameters.Add("@PageName", SqlDbType.NVarChar).Value = Codename;
-
-    //        List<CurrentPage>
-
-    //        SqlDataReader Reader = new SqlDataReader;
-    //        Cmd.ExecuteReader();
-    //        Conn.Open();
-    //        return ;
-    //    }
 }

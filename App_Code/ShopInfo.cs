@@ -39,41 +39,11 @@ public class ShopInfo
             }
         }
 
-        #region Testkode
-        //_shopName = Convert.ToString(Dt.Row["ShopName"]);
-
-        //    _zip = Dt.Select(Item[DataColumn("Zip")]);
-
-        //    _address.Add(Dr["Id"]);
-
-        //    foreach (var Item in Dt)
-        //    {
-        //        _zip = Dt.Select(Item[DataColumn("Zip")]);
-        //        _address = Convert.ToString(Dt.Rows[Convert.ToInt32("Address")]);
-        //    
-        //    }
-
-
-        //    _shopName = ;
-        //    _address =...;
-        //
-        #endregion
     }
-
 
     #endregion
 
     #region PROPERTIES
-
-    //public DataTable ListOfAll
-    //{
-
-    //    get
-    //    {
-    //        List<this> AllShopInfoList = new List<this>();
-    //        AllShopInfoList.;
-    //    }
-    //}
 
     public string ZipCity
     {
