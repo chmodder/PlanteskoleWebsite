@@ -9,7 +9,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        ShopInfo FooterInfo = new ShopInfo();
+        FooterNameLbl.Text = FooterInfo.ShopName;
+        FooterAddressLbl.Text = FooterInfo.Address;
+        FooterZipCityLbl.Text = FooterInfo.ZipCity;
+        FooterPhoneLbl.Text = Convert.ToString(FooterInfo.Phone);
 
-        
     }
 }

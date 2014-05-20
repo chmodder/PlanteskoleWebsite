@@ -9,10 +9,37 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    color: #D0D6B8;
-    line-height: 14pt;
+    /*color: #D0D6B8;*/
+    /*line-height: 14pt;
     font-family: Arial;
-    font-size: 10pt;
+    font-size: 10pt;*/
+}
+
+/*Indstiller placeholdere i forskellige browsere*/
+::-webkit-input-placeholder
+{ /* WebKit browsers */
+    font-size: 7pt;
+    color: #D0D6B8;
+}
+
+:-moz-placeholder
+{ /* Mozilla Firefox 4 to 18 */
+    font-size: 7pt;
+    color: #D0D6B8;
+    opacity: 1;
+}
+
+::-moz-placeholder
+{ /* Mozilla Firefox 19+ */
+    font-size: 7pt;
+    color: #D0D6B8;
+    opacity: 1;
+}
+
+:-ms-input-placeholder
+{ /* Internet Explorer 10+ */
+    font-size: 7pt;
+    color: #D0D6B8;
 }
 
 h1
@@ -23,7 +50,6 @@ h1
 }
 
 
-
 body
 {
     min-height: 600px;
@@ -31,11 +57,16 @@ body
     background-color: #D0D6B8;
     width: 785px;
     margin: auto;
+    line-height: 14pt;
+    font-family: Arial;
+    font-size: 10pt;
+    color: #D0D6B8;
 }
 
 #Banner
 {
     position: fixed;
+    z-index: 1;
     top: 0;
     width: 785px;
     height: 81px;
@@ -47,6 +78,7 @@ body
 #NavContainer
 {
     position: fixed;
+    z-index: 1;
     top: 81px;
     width: 785px;
     height: 40px;
@@ -142,20 +174,22 @@ body
 {
     top: 121px;
     position: absolute;
-    z-index: -1;
     width: 785px;
     padding-top: 50px;
     background-color: #ffffff;
 }
 
 /*MainContainer---------------------*/
+.GreenLink
+{
+    text-decoration: none;
+    color: #8AB512;
+}
 
 #MainContainer
 {
     padding: 0 6px 0 7px;
 }
-
-
 
 #Left
 {
@@ -167,11 +201,18 @@ body
 
     #Left ul
     {
-        list-style-image: url("../Img/MenuDot.jpg");
+        /*Fjerner liste-styling, så man kan bruge et custom-billede som prik*/
+        list-style: none;
+        padding-left: 13px;
     }
 
-
-
+        #Left ul li
+        {
+            /*positionerer prikken, som er et billede*/
+            background: url("../Img/MenuDot.jpg") no-repeat 0 5px;
+            /*rykker liste-elementerne ind fra venstre*/
+            padding-left: 17px;
+        }
 
 #Middle
 {
@@ -200,12 +241,6 @@ body
     padding-left: 24px;
 }
 
-/*Mest populære,
-sidenavn,
-indkøbskurv,
-kundel login og
-links. (statiske overskrifter)*/
-
 .ChildContainerHeader
 {
     font-family: Trebuchet MS;
@@ -213,6 +248,113 @@ links. (statiske overskrifter)*/
     color: #8AB512;
     border-bottom: 1px #8AB512 dotted;
     margin-bottom: 20px;
+    padding-left: 4px;
+}
+
+/*Cart--------------------------*/
+#Cart
+{
+    margin: 0 0 22px 4px;
+    float: left;
+    width: 169px;
+}
+
+#CartTop
+{
+    width: 100%;
+    height: 22px;
+    background-color: rgb(139, 181, 19);
+}
+
+#Product
+{
+    float: left;
+    margin-left: 9px;
+}
+
+#Price
+{
+    float: right;
+    margin-right: 21px;
+}
+
+#CartMiddle
+{
+    width: 100%;
+    padding: 0 4px 0 7px;
+    border: 1px solid rgb(223, 231, 192);
+    color: #595959;
+    font-size: 7pt;
+}
+
+#ProductAmount
+{
+    margin-right: 10px;
+}
+
+
+
+#ProductPrice
+{
+    float: right;
+}
+
+#CartMiddle a
+{
+    text-decoration: none;
+}
+
+#CartBottom
+{
+    width: 100%;
+    height: 20px;
+    background-color: rgb(139, 181, 19);
+}
+
+.CartCheckoutBtn
+{
+    width: 79px;
+    height: 14px;
+    text-align: center;
+    font-size: 7pt;
+    background-color: rgb(139, 181, 19);
+    float: right;
+    margin: 3px 5px 0 0;
+    border-style: outset;
+    border-width: 1px;
+    border-top-color: #c8e47b;
+    border-left-color: #c8e47b;
+    border-right-color: #789d10;
+    border-bottom-color: #789d10;
+}
+
+/*Login-----------------------------*/
+
+#LoginBox
+{
+    padding: 5px 0 0 4px;
+}
+.LoginTextbox
+{
+    height: 20px;
+    width: 155px;
+    border: 1px solid rgb(139, 181, 19);
+    margin-bottom: 5px;
+}
+
+.LogInOutBtn
+{
+    margin: 1px 0 14px 0;
+    height: 22px;
+    width: 74px;
+    border: 1px solid rgb(139, 181, 19);
+    background-color: #ffffff;
+    color: rgb(139, 181, 19);
+}
+
+.CreateUserLink
+{
+    margin-left: 15px;
 }
 
 /*Footer----------------------------*/

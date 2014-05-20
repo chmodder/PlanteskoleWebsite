@@ -16,56 +16,65 @@
 </head>
 
 <body>
-    <section id="Banner">
-        <asp:Image ID="BannerImg" alt="Banner" runat="server" ImageUrl="~/Img/Banner.jpg" />
-    </section>
-    <!--End Banner-->
+    <form id="form1" runat="server">
+        <section id="Banner">
+            <asp:Image ID="BannerImg" alt="Banner" runat="server" ImageUrl="~/Img/Banner.jpg" />
+        </section>
+        <!--End Banner-->
 
 
-    <section id="NavContainer">
-        <div id="Nav">
-            <ul>
-                <li><a href="Default.aspx">Forsiden</a></li>
-                <li><a href="Default.aspx">Butikken</a>
-                    <ul>
-                        <asp:Repeater ID="CategoriesRpt" runat="server">
-                            <ItemTemplate>
-                                <li><a href='"Category.aspx?Category=" + <%# Eval("Category") %>'>Buksbom</a></li>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        <li><a href="#">Buske</a></li>
-                        <li><a href="#">Roser</a></li>
-                        <li><a href="#">Frugttræer</a></li>
-                        <li><a href="#">Hortensia</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
+        <section id="NavContainer">
+            <div id="Nav">
+                <ul>
+                    <li><a href="Default.aspx">Forsiden</a></li>
+                    <li><a href="Default.aspx">Butikken</a>
+                        <ul>
+                            <asp:Repeater ID="CategoriesRpt" runat="server">
+                                <ItemTemplate>
+                                    <li><a href='"Category.aspx?Category=" + <%# Eval("Category") %>'>Buksbom</a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                            <li><a href="#">Buske</a></li>
+                            <li><a href="#">Roser</a></li>
+                            <li><a href="#">Frugttræer</a></li>
+                            <li><a href="#">Hortensia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
 
-        </div>
-    </section>
-    <!--End Nav-->
+            </div>
+        </section>
+        <!--End Nav-->
 
-    <div id="Main">
+        <div id="Main">
 
-        <div id="MainContainer">
+            <div id="MainContainer">
 
-            <section id="Left">
-                <%--I venstre side vises titlen ”Mest populære” med link til de 3 mest solgte produkter i foregående måned (Figur 3). 
+                <section id="Left">
+                    <%--I venstre side vises titlen ”Mest populære” med link til de 3 mest solgte produkter i foregående måned (Figur 3). 
                     Herunder vises tre bannere som linker til andre hjemmesider.--%>
-                <h3 class="ChildContainerHeader">Mest Populære</h3>
-                <article>
-                    <ul>
-                        <li>Buksbom</li>
-                        <li>Goldenmarie</li>
-                        <li>New Dawn</li>
-                    </ul>
-                </article>
-            </section>
-            <!--End Left-->
+
+                    <h3 class="ChildContainerHeader">Mest Populære</h3>
+                    <article id="MostPopularContainer">
+                        <ul>
+                            <li><a class="GreenLink" href="google.com">Buksbom</a></li>
+                            <li><a class="GreenLink" href="#">Goldenmarie</a></li>
+                            <li><a class="GreenLink" href="#">New Dawn</a></li>
+                        </ul>
+                    </article>
+
+                    <h3 class="ChildContainerHeader">Links</h3>
+                    <article id="AdContainer">
+                        <a href="#">
+                            <img id="AdImg" src="#" /></a>
+                    </article>
+
+                </section>
+                <!--End Left-->
 
 
-            <form id="form1" runat="server">
+
                 <section id="Middle">
 
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -73,44 +82,59 @@
 
                 </section>
                 <!--End Middle-->
-            </form>
 
-            <section id="Right">
-                <h3 class="ChildContainerHeader">Indkøbskurv</h3>
-                <article>
-                    Donec porttitor odio at lacus congue venenatis. Nunc sollicitudin rhoncus libero sed luctus. Donec ac libero id leo congue imperdiet. Etiam imperdiet posuere arcu, eu rhoncus eros auctor sed. Fusce convallis sed nisi non fermentum. In fringilla rhoncus leo vel consectetur. Integer bibendum quis lorem sit amet interdum. Donec sem lectus, ultrices vitae convallis sed, venenatis a arcu.
 
-Proin nulla tellus, posuere in quam non, imperdiet dictum quam. Mauris ac sem arcu. Aliquam adipiscing tincidunt eros, et blandit risus. Aliquam massa sapien, feugiat in interdum sit amet, porta eget dolor. Sed vel nulla auctor massa placerat facilisis. Donec viverra dapibus feugiat. Quisque nec venenatis magna. Donec et purus rhoncus, mattis dolor tincidunt, hendrerit elit. Nulla turpis dolor, malesuada eu cursus vitae, tempus eu libero. Mauris ultrices et orci volutpat vestibulum. Proin mattis feugiat tincidunt. Donec vel erat et ipsum tempus cursus mollis et felis.
+                <section id="Right">
 
-Sed vehicula, est eget hendrerit vulputate, enim eros imperdiet erat, eu tempus turpis neque nec erat. Donec quis mattis felis, eu egestas quam. Duis aliquam tempus diam sit amet aliquam. Curabitur pulvinar dignissim mi, sit amet fringilla est molestie ut. Ut libero tortor, molestie ut dignissim in, dignissim quis mi. In eros mauris, luctus id elit id, pretium aliquam erat. Mauris nec vestibulum risus. Aliquam erat volutpat.
+                    <h3 class="ChildContainerHeader">Indkøbskurv</h3>
+                    <div id="Cart">
+                        <div id="CartTop">
+                            <span id="Product">Produkt</span><span id="Price">Pris</span>
+                        </div>
+                        <div id="CartMiddle">
+                            <%--<asp:Repeater ID="CartContentRpt" runat="server">
+                            <ItemTemplate>
+                                <%# Eval("ProductAmount") %><%# Eval("ProductName")%><%# Eval("ProductPrice") %>
+                            </ItemTemplate>
+                        </asp:Repeater>--%>
 
-Donec nisi nunc, fringilla sit amet feugiat eget, blandit vitae tortor. Quisque adipiscing et nisi at vulputate. Nulla ultricies lacus augue, at euismod ipsum rutrum eu. Integer malesuada porttitor sem nec interdum. Aliquam egestas malesuada lorem, vel condimentum sapien consequat eu. Suspendisse sit amet hendrerit magna, quis hendrerit lacus. In rutrum enim sit amet aliquam placerat. Sed nec mollis mauris. Integer mollis fringilla nunc, et venenatis sem cursus eget. Suspendisse sed vestibulum urna.
+                            <span id="ProductAmount">Amount</span><a href="#">Produktnavn</a><span id="ProductPrice">Pris</span>
 
-Aliquam ultricies libero a ipsum hendrerit, at venenatis mi suscipit. Curabitur lacinia molestie aliquam. Nam facilisis ante sit amet lacus tincidunt, et pharetra diam pharetra. Sed posuere quam id est placerat euismod. Nullam magna libero, blandit id dui et, gravida ultricies sem. Maecenas scelerisque leo ut dolor aliquam congue. Donec commodo neque vel arcu rhoncus faucibus. Sed vestibulum, quam eget ullamcorper tristique, felis diam ultrices dui, sit amet adipiscing nibh urna nec dui. Duis id massa euismod, fringilla leo a, facilisis lacus.
+                        </div>
+                        <div id="CartBottom">
+                            <asp:Button ID="CartCheckoutBtn" CssClass="CartCheckoutBtn" runat="server" Text="Til kassen" />
+                        </div>
+                    </div>
 
-Ut ornare, augue sed lacinia condimentum, lacus est vulputate libero, nec condimentum diam nisi eget nulla. Ut at elementum urna. Proin eu suscipit eros. Integer vestibulum magna et magna fringilla fringilla. Duis in faucibus arcu. Vestibulum placerat felis et lectus tincidunt, in pulvinar ante aliquam. Donec sollicitudin tincidunt sapien in tincidunt. Sed vel magna ullamcorper, fringilla tellus non, dictum arcu. Nam et sem tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus nisi lorem, rhoncus ac eros ac, suscipit volutpat tortor. Ut interdum lectus ut scelerisque semper. Quisque imperdiet consectetur consequat. Nam mattis nec justo sed sollicitudin. Praesent tincidunt nec augue et consectetur.
+                    <h3 class="ChildContainerHeader">Kunde login</h3>
+                    <div id="LoginBox" runat="server">
+                        <asp:TextBox ID="UserNameTbx" CssClass="LoginTextbox" Placeholder="Brugernavn" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="PasswordTxb" CssClass="LoginTextbox" Placeholder="Kodeord" runat="server"></asp:TextBox>
+                        <asp:Button ID="LoginBtn" CssClass="LogInOutBtn" runat="server" Text="Login" />
+                        <br />
+                        <asp:HyperLink ID="CreateUserLnk" CssClass="GreenLink CreateUserLink" runat="server">Opret kunde</asp:HyperLink>
 
-Etiam et urna risus. Vivamus vitae egestas tellus. Maecenas nibh purus, pulvinar at sagittis nec, vulputate ut libero. Nam turpis eros, fringilla quis ultrices quis, tincidunt id justo. Nullam velit quam, scelerisque sed magna at, convallis aliquam ipsum. Sed mattis sodales purus. Donec et dui vitae neque vulputate vestibulum. Morbi interdum neque et dolor auctor, ut sodales risus tempus. In a pretium nunc. Ut eu purus nec nisl consectetur fringilla vitae sit amet ligula. Etiam venenatis sed lectus id accumsan. Fusce egestas sed odio mattis tempor. Sed nunc urna, hendrerit eu augue id, tincidunt consectetur enim.
+                    </div>
+                </section>
+                <!--End Right-->
 
-Etiam consectetur rhoncus odio, sit amet sollicitudin purus suscipit id. Fusce lobortis et enim nec congue. Curabitur a diam bibendum, consectetur lacus nec, aliquet neque. Duis magna turpis, rutrum vel tortor et, lacinia dictum turpis. Quisque sodales est consequat justo tincidunt, vel pulvinar ante dignissim. Maecenas quis felis ligula. Sed lacinia quam sit amet mi gravida, at accumsan nisl porta. Nunc odio sapien, dignissim et dolor ut, feugiat pretium lacus. Aenean sed iaculis felis, vitae congue dolor. In semper interdum risus. Aliquam at aliquam libero, eu suscipit risus.
+            </div>
+            <!--End MainContainer-->
 
-Aliquam eu auctor nibh. Curabitur tellus odio, suscipit sed dui in, condimentum condimentum nunc. Nunc faucibus aliquet viverra. Mauris ut sagittis massa. Phasellus tincidunt nunc metus, vel imperdiet arcu scelerisque sit amet. Donec fermentum dictum elit, in dapibus eros rutrum sed. Nulla lacinia est sit amet tincidunt consectetur. Quisque malesuada volutpat tortor, eget molestie elit suscipit at.
-                </article>
-            </section>
-            <!--End Right-->
+            <div id="Footer">
+                <asp:Label ID="FooterNameLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterAddressLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterZipCityLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterPhoneLbl" runat="server" Text=""></asp:Label>
+            </div>
+            <!--End Footer-->
 
         </div>
-        <!--End MainContainer-->
-
-        <div id="Footer"></div>
-        <!--End Footer-->
-
-    </div>
-    <!--End Main-->
+        <!--End Main-->
 
 
 
-
+    </form>
 </body>
 
 </html>
