@@ -11,14 +11,11 @@
 
 
         <asp:Label ID="TopH1Lbl" CssClass="HeadersMiddle" runat="server" Text=''></asp:Label>
+        <br />
+        <asp:Label ID="AboutUsH2Lbl" runat="server" Text=""></asp:Label>
+        <br/>
+        <asp:Label ID="AboutUsPLbl" runat="server" Text=""></asp:Label>
 
-
-        <%--<asp:Repeater ID="Repeater2" runat="server">
-            <ItemTemplate>
-                <asp:Label ID="AboutUsH2Lbl" runat="server" Text=""></asp:Label>
-                <asp:Label ID="AboutUsPLbl" runat="server" Text=""></asp:Label>
-            </ItemTemplate>
-        </asp:Repeater>--%>
 
 
 

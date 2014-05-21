@@ -91,18 +91,17 @@ public class DataAccessLayer
             Conn.Open();
             SqlDataReader Reader = Cmd.ExecuteReader();
 
-            if (Reader.Read())
+
+            while (Reader.Read())
             {
-                while (Reader.Read())
-                {
-                    PageContent TempContent = new PageContent();
+                PageContent TempContent = new PageContent();
 
-                    TempContent.Content = (string)Reader["Content"];
-                    TempContent.CodeName = (string)Reader["CodeName"];
+                TempContent.Content = (string)Reader["Content"];
+                TempContent.CodeName = (string)Reader["CodeName"];
 
-                    PageContentList.Add(TempContent);
-                }
+                PageContentList.Add(TempContent);
             }
+
         }
 
         catch (Exception ex)

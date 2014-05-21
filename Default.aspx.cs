@@ -16,6 +16,8 @@ public partial class _Default : System.Web.UI.Page
 
 
         TopH1Lbl.Text = DefaultPage.GetElementContent("TopH1Lbl");
+        AboutUsH2Lbl.Text = DefaultPage.GetElementContent("AboutUsH2Lbl");
+        AboutUsPLbl.Text = DefaultPage.GetElementContent("AboutUsPLbl");
 
         #region Udkommenteret
 

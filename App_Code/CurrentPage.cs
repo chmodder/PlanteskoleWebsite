@@ -40,7 +40,8 @@ public class CurrentPage
 
     //}
     #endregion
-
+    
+    //Henter alle felter med CodeName og Content i en liste der tilhører sidenavnet i input-parametret og tilføjer listen til _currentPageContent field.
     public void GetCurrentPageContent(string currentPageName)
     {
 
@@ -49,6 +50,7 @@ public class CurrentPage
         CurrentPageContent = DBCurrentPageContent;
     }
 
+    //Henter Listen fra _currentPageContent field og returner liste-items, hvor _codeName field matcher liste-items
     public string GetElementContent(string codeName)
     {
         CodeName = codeName;
@@ -58,9 +60,8 @@ public class CurrentPage
             if (item.CodeName == CodeName)
             {
                 Content = item.Content;
-
             }
-
+            
         }
         return Content;
     }
