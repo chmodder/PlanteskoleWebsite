@@ -27,12 +27,18 @@ public partial class _Default : System.Web.UI.Page
 
         ShopInfo Address = new ShopInfo();
 
-        //Create and populate RptAddressSource List with Address fields
+        //Creates and populate RptAddressSource List with Address fields
         List<ShopInfo> RptAddressSource = new List<ShopInfo>();
         RptAddressSource.AddRange(new[] {Address});
 
-        //Bind RptDatasource, which is the list above to AddressRepeater
+        //Binds RptDatasource, which is the list above to AddressRepeater
         AddressRpt.DataSource = RptAddressSource;
         AddressRpt.DataBind();
+
+        BusinessHoursH2.Text = DefaultPage.GetElementContent("BusinessHoursH2");
+
+        BusinessHoursRpt.DataSource = DataAccessLayer.GetBusinessHours();
+        BusinessHoursRpt.DataBind();
+        
     }
 }

@@ -35,13 +35,67 @@ public class DataAccessLayer
         return dt;
     }
 
+    //    public static List<BusinessHours> GetBusinessHours()
+    //    {
+    //        List<BusinessHours> BusinessHoursList = new List<BusinessHours>();
+
+    //        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+    //        SqlCommand Cmd = new SqlCommand();
+    //        Cmd.CommandText = @"
+    //            SELECT * FROM BusinessHours";
+
+    //        Cmd.Connection = Conn;
+    //        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+    //        DataTable Dt = new DataTable();
+    //        da.Fill(Dt);
+
+    //        foreach (DataRow Dr in Dt.Rows)
+    //        {
+    //            foreach (DataColumn column in Dt.Columns)
+    //            {
+    //                BusinessHours TempList = new BusinessHours();
+    //                TempList.Day = Dr["Day"].ToString();
+    //                TempList.Time = Dr["Time"].ToString();
+    //            }
+    //        }
+    //        return BusinessHoursList;
+    //    }
+
+    public static List<BusinessHours> GetBusinessHours()
+    {
+        List<BusinessHours> BusinessHoursList = new List<BusinessHours>();
+
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
+        Cmd.CommandText = @"
+            SELECT * FROM BusinessHours";
+
+        Cmd.Connection = Conn;
+        Conn.Open();
+        SqlDataReader Reader = Cmd.ExecuteReader();
+
+        while (Reader.Read())
+        {
+            BusinessHours TempList = new BusinessHours();
+
+            TempList.Day = Reader["Day"].ToString();
+            TempList.Time = Reader["Time"].ToString();
+
+            BusinessHoursList.Add(TempList);
+        }
+        Conn.Close();
+
+        return BusinessHoursList;
+    }
+
+
     #region GetPageContent(NoTryCatch)
     //    public static List<PageContent> GetPageContent(string pageName)
     //    {
     //        Cmd.CommandText = @"
     //            SELECT CodeName, Content FROM PageContent
     //            INNER JOIN Pages
-    //                ON Pages.Id = PageContent.FkPageId
+    //                ON Pages._id = PageContent.FkPageId
     //            WHERE Pages.PageName = @PageName";
 
     //        Cmd.Parameters.Add("@PageName", SqlDbType.NVarChar).Value = pageName;
@@ -70,7 +124,11 @@ public class DataAccessLayer
     //    }
     #endregion
 
-    //Returns all Table-rows WHERE Pagename match input parameter
+    /// <summary>
+    /// Returns all Table-rows WHERE Pagename match input parameter
+    /// </summary>
+    /// <param name="pageName"></param>
+    /// <returns></returns>
     public static List<PageContent> GetPageContent(string pageName)
     {
         SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
@@ -117,6 +175,44 @@ public class DataAccessLayer
 
         return PageContentList;
     }
+
+    //    public static List<Product> GetAllProducts()
+    //    {
+    //        List<Product> ListProducts = new List<Product>();
+
+    //        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+    //        SqlCommand Cmd = new SqlCommand();
+
+
+    //        Cmd.CommandText = @"Select * From Products
+    //                          INNER JOIN Categories
+    //                            ON Categories.Id = Products.FkCategoryId";
+
+    //        Cmd.Connection = Conn;
+
+    //        Conn.Open();
+
+    //        SqlDataReader Reader = Cmd.ExecuteReader();
+
+    //        while (Reader.Read())
+    //        {
+    //            Product TempProduct = new Product();
+
+    //            TempProduct.Id = Convert.ToInt32(Reader["Id"]);
+    //            TempProduct.Name = Reader["Name"].ToString();
+    //            TempProduct.Description = Reader["Description"].ToString();
+    //            TempProduct.Img = Reader["Img"].ToString();
+    //            TempProduct.Price = Convert.ToSingle(Reader["Price"]);
+    //            //TempProduct.Price = (float)float.Parse(Reader["Price"]);
+    //            TempProduct.Stock = Convert.ToInt32(Reader["Stock"]);
+
+    //            ListProducts.Add(TempProduct);
+    //        }
+
+    //        Conn.Close();
+
+    //        return ListProducts;
+    //    }
 
     #endregion
 
