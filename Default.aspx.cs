@@ -13,34 +13,17 @@ public partial class _Default : System.Web.UI.Page
         string ThisPageName = DefaultPage.GetCurrentPageName();
         DefaultPage.GetCurrentPageContent(ThisPageName);
 
-
-
         TopH1Lbl.Text = DefaultPage.GetElementContent("TopH1Lbl");
         AboutUsH2Lbl.Text = DefaultPage.GetElementContent("AboutUsH2Lbl");
         AboutUsPLbl.Text = DefaultPage.GetElementContent("AboutUsPLbl");
 
         #region Udkommenteret
 
-        //CurrentPage DefaultPage = new CurrentPage();
-        //DefaultPage.PageName = DefaultPage.GetCurrentPageName();
-
-        //Lav liste over DB-elementer der hører til siden
-
-        //DefaultPage.Codename = "TopH1Lbl";
-        //TopH1Lbl.Text = DefaultPage.Content;
-
         ////Implement Img content
 
-        //DefaultPage.Codename = "AboutUsH2Lbl";
-        //AboutUsH2Lbl.Text = DefaultPage.Content;
-
-        //DefaultPage.Codename = "AboutUsPLbl";
-        //AboutUsPLbl.Text = DefaultPage.Content;
-
-        //List<CurrentPage> ContentList = new List<CurrentPage>();
-
-        //FUCK THIS SHIT!!
         #endregion
+
+        AddressH2Lbl.Text = DefaultPage.GetElementContent("AddressH2Lbl");
 
         ShopInfo Address = new ShopInfo();
 

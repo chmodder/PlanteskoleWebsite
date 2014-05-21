@@ -49,7 +49,6 @@ h1
     color: #8AB512;
 }
 
-
 body
 {
     min-height: 600px;
@@ -62,6 +61,16 @@ body
     font-size: 10pt;
     color: #D0D6B8;
 }
+
+/*.TopMargin14px
+{
+    margin-top: 14px;
+}
+
+.TopMargin27px
+{
+    margin-top: 27px;
+}*/
 
 #Banner
 {
@@ -168,7 +177,7 @@ body
         }
 
 
-/*Main-----------------------------*/
+/*Main----------------------------------------------------------------------*/
 
 #Main
 {
@@ -179,7 +188,7 @@ body
     background-color: #ffffff;
 }
 
-/*MainContainer---------------------*/
+/*MainContainer------------------------------------*/
 .GreenLink
 {
     text-decoration: none;
@@ -190,6 +199,75 @@ body
 {
     padding: 0 6px 0 7px;
 }
+
+#Middle
+{
+    width: 404px;
+    float: left;
+}
+
+.HeadersMiddle
+{
+    font-family: Verdana, sans-serif;
+    font-size: 12pt;
+    color: #8AB512;
+    font-weight: bold;
+}
+
+.FrontpageH2Middle
+{
+    font-family: Verdana, sans-serif;
+    font-size: 9pt;
+    color: #8AB512;
+}
+
+#TopH1
+{
+    margin-top: 4px;
+    font-weight: bold;
+}
+
+
+.MainContainerBottom100
+{
+    float: left;
+    width: 100%;
+    padding: 22px 0 0 0;
+}
+
+.MainContainerBottom100Content
+{
+    float: left;
+    padding: 27px 0 0 0;
+}
+
+.MainContainerBottom50
+{
+    float: left;
+    padding: 30px 0 0 0;
+    width: 50%;
+}
+
+.MainContainerBottom50Content
+{
+    float: left;
+    padding: 14px 0 0 0;
+}
+
+    .MainContainerBottom50Content ul
+    {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .MainContainerBottom50Content ul a
+    {
+        text-decoration: none;
+        color: #D0D6B8;
+    }
+
+/*Left side container----------------------*/
 
 #Left
 {
@@ -213,25 +291,7 @@ body
             /*rykker liste-elementerne ind fra venstre*/
             padding-left: 17px;
         }
-
-#Middle
-{
-    width: 404px;
-    float: left;
-}
-
-.HeadersMiddle
-{
-    font-family: Verdana, sans-serif;
-    font-size: 12pt;
-    color: #8AB512;
-}
-
-#TopH1
-{
-    margin-top: 4px;
-    font-weight: bold;
-}
+/*Right side container---------------------*/
 
 #Right
 {
@@ -334,6 +394,7 @@ body
 {
     padding: 5px 0 0 4px;
 }
+
 .LoginTextbox
 {
     height: 20px;

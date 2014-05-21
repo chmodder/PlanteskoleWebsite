@@ -104,7 +104,7 @@ public class DataAccessLayer
 
         }
 
-        catch (Exception ex)
+        catch (Exception)
         {
             //Handle exception, perhaps log it and do the needful
         }
@@ -117,6 +117,7 @@ public class DataAccessLayer
 
         return PageContentList;
     }
+
     #endregion
 
 }
