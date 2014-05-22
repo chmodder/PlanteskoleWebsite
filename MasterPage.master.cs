@@ -14,6 +14,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         FooterAddressLbl.Text = FooterInfo.Address;
         FooterZipCityLbl.Text = FooterInfo.ZipCity;
         FooterPhoneLbl.Text = Convert.ToString(FooterInfo.Phone);
-
+        
     }
 }

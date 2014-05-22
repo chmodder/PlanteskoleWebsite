@@ -29,15 +29,12 @@
                     <li><a href="Default.aspx">Forsiden</a></li>
                     <li><a href="Default.aspx">Butikken</a>
                         <ul>
-                            <asp:Repeater ID="CategoriesRpt" runat="server">
+                            <asp:Repeater ID="CategoriesRpt" runat="server" DataSourceID="NavSqlDataSource">
                                 <ItemTemplate>
-                                    <li><a href='"Category.aspx?Category=" + <%# Eval("Category") %>'>Buksbom</a></li>
+                                    <li><a href='<%#"Shop.aspx?Category=" +  Eval("Name") %>'><%# Eval("Name") %></a></li>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            <li><a href="#">Buske</a></li>
-                            <li><a href="#">Roser</a></li>
-                            <li><a href="#">Frugttræer</a></li>
-                            <li><a href="#">Hortensia</a></li>
+                            <asp:SqlDataSource runat="server" ID="NavSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
                         </ul>
                     </li>
                     <li><a href="Contact.aspx">Kontakt</a></li>
@@ -59,15 +56,20 @@
                     <article id="MostPopularContainer">
                         <ul>
                             <li><a class="GreenLink" href="google.com">Buksbom</a></li>
-                            <li><a class="GreenLink" href="#">Goldenmarie</a></li>
-                            <li><a class="GreenLink" href="#">New Dawn</a></li>
+                            <%--<li><a class="GreenLink" href="#">Goldenmarie</a></li>
+                            <li><a class="GreenLink" href="#">New Dawn</a></li>--%>
                         </ul>
                     </article>
 
                     <h3 class="ChildContainerHeader">Links</h3>
                     <article id="AdContainer">
-                        <a href="#">
-                            <img id="AdImg" src="#" /></a>
+                        <asp:Repeater ID="AdsRpt" runat="server" DataSourceID="AdsSqlDataSource">
+                            <ItemTemplate>
+                                <a href='<%# Eval("ExternalUrl") %>' target="_new">
+                                    <img src='<%#"Img/Ads/" + Eval("ImageName") %>' alt='<%# Eval("AdName") %>' /></a>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <asp:SqlDataSource runat="server" ID="AdsSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Ads.ExternalUrl, Images.Name AS ImageName, Ads.Name AS AdName FROM Ads INNER JOIN Images ON Ads.FkImagesId = Images.Id"></asp:SqlDataSource>
                     </article>
 
                 </section>
