@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASP;
+using MasterPage = System.Web.UI.MasterPage;
 
 public partial class Contact : System.Web.UI.Page
 {

@@ -30,14 +30,15 @@
                     <li>
                         <asp:Repeater ID="ShopRpt" runat="server" DataSourceID="ShopSqlDataSource">
                             <ItemTemplate>
-                                <a href='<%#"Shop.aspx?Category=" +  Eval("Name") %>'>Butikken</a>
+                                <a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'>Butikken</a>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <asp:SqlDataSource runat="server" ID="ShopSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP 1 [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
+                        <asp:SqlDataSource runat="server" ID="ShopSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
+                            SelectCommand="SELECT TOP 1 [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
                         <ul>
                             <asp:Repeater ID="CategoriesRpt" runat="server" DataSourceID="NavSqlDataSource">
                                 <ItemTemplate>
-                                    <li><a href='<%#"Shop.aspx?Category=" +  Eval("Name") %>'><%# Eval("Name") %></a></li>
+                                    <li><a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'><%# Eval("Name") %></a></li>
                                 </ItemTemplate>
                             </asp:Repeater>
                             <asp:SqlDataSource runat="server" ID="NavSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 

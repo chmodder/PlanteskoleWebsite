@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -89,40 +90,6 @@ public class DataAccessLayer
     }
 
 
-    #region GetPageContent(NoTryCatch)
-    //    public static List<PageContent> GetPageContent(string pageName)
-    //    {
-    //        Cmd.CommandText = @"
-    //            SELECT CodeName, Content FROM PageContent
-    //            INNER JOIN Pages
-    //                ON Pages._id = PageContent.FkPageId
-    //            WHERE Pages.PageName = @PageName";
-
-    //        Cmd.Parameters.Add("@PageName", SqlDbType.NVarChar).Value = pageName;
-
-    //        Cmd.Connection = Conn;
-
-    //        List<PageContent> PageContentList = new List<PageContent>();
-
-    //        Conn.Open();
-    //        SqlDataReader Reader = Cmd.ExecuteReader();
-
-    //        if (Reader.Read())
-    //        {
-    //            while (Reader.Read())
-    //            {
-    //                PageContent TempContent = new PageContent();
-    //                TempContent.Content = (string)Reader["Content"];
-    //                TempContent.CodeName = (string)Reader["CodeName"];
-
-    //                PageContentList.Add(TempContent);
-    //            }
-    //        }
-    //        Conn.Close();
-
-    //        return PageContentList;
-    //    }
-    #endregion
 
     /// <summary>
     /// Returns all Table-rows WHERE Pagename match input parameter
@@ -176,6 +143,7 @@ public class DataAccessLayer
         return PageContentList;
     }
 
+    #region TESTING
     //    public static List<Product> GetAllProducts()
     //    {
     //        List<Product> ListProducts = new List<Product>();
@@ -213,6 +181,8 @@ public class DataAccessLayer
 
     //        return ListProducts;
     //    }
+
+    #endregion
 
     #endregion
 
