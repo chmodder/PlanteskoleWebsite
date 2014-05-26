@@ -34,14 +34,6 @@ public partial class ProductInfo : System.Web.UI.Page
                 }
             }
 
-
-            //foreach (RepeaterItem Item in ItemInfoRpt.Items)
-            //{
-            //    TextBox AmountTbx = (TextBox)Item.FindControl("AmountTbx");
-            //    int ItemAmount = Convert.ToInt32(AmountTbx.Text);
-
-            //}
-
             ItemInfoRpt.DataSource = ItemRptSrc;
             ItemInfoRpt.DataBind();
         }
@@ -58,11 +50,14 @@ public partial class ProductInfo : System.Web.UI.Page
 
     protected void ItemInfoRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+        
+
         //liste kaldet "Cart" med plads til produkter
         Cart C1Cart = new Cart();
 
         ////Henter Sessionen kurv til kurv
         C1Cart.TakeCart();
+
 
         foreach (RepeaterItem Item in ItemInfoRpt.Items)
         {
@@ -81,20 +76,26 @@ public partial class ProductInfo : System.Web.UI.Page
             //Unable to convert to float. using hardcoded value for now
             #region PriceBugNeedsFixing
             //Gets Label value from PriceLbl
-            float Price = 24;
-            //Label PriceLbl = (Label)Item.FindControl("PriceLbl");
+            Label PriceLbl = (Label)e.Item.FindControl("PriceLbl");
+        //Response.Write(float.Parse(PriceLbl.Text));
+            //Label PriceLbl2 = (Label)Item.FindControl("PriceLbl");
             //string PriceString = PriceLbl.Text;
+            float Price = (float)12.34;
             //float Price = (float)Convert.ToSingle(PriceString);
+            //float Price = float.Parse(PriceString);
+            //TestLbl.Text = PriceString;
+
 
             //float Price = float.Parse(PriceString);
 
             //bool valid = float.TryParse(PriceLbl.Text.ToString(), out Price);
             ////float Price = float.Parse(PriceLbl.Text, CultureInfo.InvariantCulture.NumberFormat);
+
             #endregion
 
             C1Cart.AddToCart(ProductId, ItemAmount, ProductName, Price);
 
-            TestLbl.Text = ItemAmount.ToString();
+            //TestLbl.Text = PriceString;
         }
         
         C1Cart.ShowCart((Repeater)Master.FindControl("CartContentRpt"));

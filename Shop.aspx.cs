@@ -16,8 +16,6 @@ public partial class Shop : System.Web.UI.Page
 
     protected void UpdateCartBtn_Click(object sender, EventArgs e)
     {
-
-
         foreach (GridViewRow Row in ProductsGv.Rows)
         {
             if (Row.RowType == DataControlRowType.DataRow)

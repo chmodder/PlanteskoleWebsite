@@ -80,6 +80,7 @@ public class Cart
             {
                 //Så opdater antal og samlet pris
                 Product.Amount += Convert.ToInt32(ProductAmount);
+                Product.Price += ProductPrice;
 
                 //Nu er det konstateret, at det ikke er noget nyt produkt længere
                 NewProduct = false;
