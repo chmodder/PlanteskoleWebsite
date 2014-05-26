@@ -40,7 +40,7 @@ public class ProductsInCart
         set { _amount = value; }
     }
 
-    public float TotalAmount
+    public float PriceTotal
     {
         get { return _amount * _price; }
     }

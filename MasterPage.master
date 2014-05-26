@@ -104,15 +104,13 @@
                         <div id="CartMiddle">
                             <asp:Repeater ID="CartContentRpt" runat="server">
                                 <ItemTemplate>
-                                    <span id="ProductAmount"><%# Eval("Amount") %></span><a href='<%# "ProductInfo.aspx?ItemId=" + Eval("Id")%>'><%# Eval("Name")%></a><span id="ProductPrice"><%# Eval("Price") %></span>
+                                    <span id="ProductAmount"><%# Eval("Amount") %></span><a href='<%# "ProductInfo.aspx?ItemId=" + Eval("Id")%>'><%# Eval("Name")%></a><span id="ProductPrice"><%# Eval("PriceTotal") %></span>
                                 </ItemTemplate>
                             </asp:Repeater>
 
-
-
                         </div>
                         <div id="CartBottom">
-                            <asp:Button ID="CartCheckoutBtn" CssClass="CartCheckoutBtn" runat="server" Text="Til kassen" />
+                            <asp:Button ID="CartCheckoutBtn" CssClass="CartCheckoutBtn" runat="server" Text="Til kassen" OnClick="CartCheckoutBtn_Click" />
                         </div>
                     </div>
 

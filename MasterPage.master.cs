@@ -28,4 +28,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         FooterPhoneLbl.Text = Convert.ToString(FooterInfo.Phone);
         
     }
+    protected void CartCheckoutBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Checkout.aspx");
+    }
 }

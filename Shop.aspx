@@ -17,7 +17,7 @@
 
             <asp:GridView ID="ProductsGv" runat="server" AutoGenerateColumns="False" DataSourceID="ProductListSqlDataSource" DataKeyNames="Id, Name, Price" OnRowCommand="ProductsGv_OnRowCommand">
                 <Columns>
-                    <asp:TemplateField HeaderText="Stk">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:HiddenField ID="HiddenFieldId" Value='<%# Eval("Id") %>' runat="server" />
                         </ItemTemplate>

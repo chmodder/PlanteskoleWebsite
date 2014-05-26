@@ -80,7 +80,6 @@ public class Cart
             {
                 //Så opdater antal og samlet pris
                 Product.Amount += Convert.ToInt32(ProductAmount);
-                Product.Price += ProductPrice;
 
                 //Nu er det konstateret, at det ikke er noget nyt produkt længere
                 NewProduct = false;
@@ -106,6 +105,13 @@ public class Cart
     /// </summary>
     /// <param name="View"></param>
     public void ShowCart(Repeater Rpt)
+    {
+        Rpt.DataSource = this.CartList;
+        Rpt.DataBind();
+    }
+
+    //Overloading on the parametertype "gridview" doesn't work. Needs follow up...
+    public void ShowCart(GridView Rpt)
     {
         Rpt.DataSource = this.CartList;
         Rpt.DataBind();
@@ -156,23 +162,41 @@ public class Cart
     //    }
     //}
 
-    ///// <summary>
-    ///// Removes all items from Cart of type indicated by Datakey. Takes 1 Argument of type DataKey
-    ///// </summary>
-    ///// <param name="dataKey"></param>
-    //public void RemoveAll(DataKey dataKey)
-    //{
-    //    foreach (ProductsInCart Product in CartList)
-    //    {
-    //        //Hvis produktet er fundet
-    //        if (dataKey != null && Product.Id == (int)dataKey.Value)
-    //        {
-    //            //Så fjernes alle variabler der hører til Cart list af typen ProductsInCart, hvor Id'et matcher e.CommandAgument
-    //            CartList.Remove(Product);
-    //            break;
-    //        }
-    //    }
-    //}
+    /// <summary>
+    /// Removes all items from Cart of type indicated by Datakey. Takes 1 Argument of type DataKey
+    /// </summary>
+    /// <param name="dataKey"></param>
+    public void RemoveAll(DataKey dataKey)
+    {
+        foreach (ProductsInCart Product in CartList)
+        {
+            //Hvis produktet er fundet
+            if (dataKey != null && Product.Id == (int)dataKey.Value)
+            {
+                //Så fjernes alle variabler der hører til Cart list af typen ProductsInCart, hvor Id'et matcher e.CommandAgument
+                CartList.Remove(Product);
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Removes all items from Cart of type indicated by Datakey. Takes 1 Argument of type DataKey
+    /// </summary>
+    /// <param name="productId"></param>
+    public void RemoveAll(int productId)
+    {
+        foreach (ProductsInCart Product in CartList)
+        {
+            //Hvis produktet er fundet
+            if (productId != null && Product.Id == (int)productId)
+            {
+                //Så fjernes alle variabler der hører til Cart list af typen ProductsInCart, hvor Id'et matcher productId input
+                CartList.Remove(Product);
+                break;
+            }
+        }
+    }
 
     ///// <summary>
     ///// Removes all items from Cart.
@@ -185,6 +209,11 @@ public class Cart
     //    }
 
     //}
+
+    public void CreateOrder()
+    {
+        
+    }
 
     #endregion
 }
