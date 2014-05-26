@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
@@ -36,31 +37,57 @@ public class DataAccessLayer
         return dt;
     }
 
-    //    public static List<BusinessHours> GetBusinessHours()
-    //    {
-    //        List<BusinessHours> BusinessHoursList = new List<BusinessHours>();
+    public static List<Product> GetProductList()
+    {
+        List<Product> ProductList = new List<Product>();
 
-    //        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
-    //        SqlCommand Cmd = new SqlCommand();
-    //        Cmd.CommandText = @"
-    //            SELECT * FROM BusinessHours";
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
+        Cmd.CommandText = @"
+                SELECT 
+	                Products.Id AS ProductId, Products.Name AS ProductName,  Products.Description AS ProductDesc, Products.Price, Products.ProductNumber, Products.StockMin, Products.StockMax,
+	                CultivationTime.Id AS CultivationTimeId, CultivationTime.Name AS CultivationTimeName ,
+	                SoilType.Id AS SoilTypeId, SoilType.Name AS SoilTypeName,
+	                Categories.Id AS CategoryId, Categories.Name AS CategoryName
+                FROM Products
+                INNER JOIN CultivationTime
+                ON CultivationTime.Id = Products.FkCultivationTimeId
+                INNER JOIN Categories
+                ON Categories.Id = Products.FkCategoryId
+                INNER JOIN SoilType
+                ON SoilType.Id = Products.FkSoilTypeId";
 
-    //        Cmd.Connection = Conn;
-    //        SqlDataAdapter da = new SqlDataAdapter(Cmd);
-    //        DataTable Dt = new DataTable();
-    //        da.Fill(Dt);
+        Cmd.Connection = Conn;
+        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+        DataTable Dt = new DataTable();
+        da.Fill(Dt);
 
-    //        foreach (DataRow Dr in Dt.Rows)
-    //        {
-    //            foreach (DataColumn column in Dt.Columns)
-    //            {
-    //                BusinessHours TempList = new BusinessHours();
-    //                TempList.Day = Dr["Day"].ToString();
-    //                TempList.Time = Dr["Time"].ToString();
-    //            }
-    //        }
-    //        return BusinessHoursList;
-    //    }
+        foreach (DataRow Dr in Dt.Rows)
+        {
+            foreach (DataColumn column in Dt.Columns)
+            {
+                Product TempList = new Product();
+
+                TempList.ProductId = (int)Dr["ProductId"];
+                TempList.Name = Dr["ProductName"].ToString();
+                TempList.Description = Dr["ProductDesc"].ToString();
+                TempList.CategoryId = (int)Dr["CategoryId"];
+                TempList.CategoryName = Dr["CategoryName"].ToString();
+                TempList.ProductNumber = (int)Dr["ProductNumber"];
+                TempList.SoilTypeId = (int)Dr["SoilTypeId"];
+                TempList.SoilType = Dr["SoilTypeName"].ToString();
+                TempList.StockMin = (int)Dr["StockMin"];
+                TempList.StockMax = (int)Dr["StockMax"];
+                TempList.CultivationTimeId = (int)Dr["CultivationTimeId"];
+                TempList.CultivationTime = Dr["CultivationTimeName"].ToString();
+                TempList.Price = Convert.ToSingle(Dr["Price"]);
+                //TempList.SoilType = Dr["SoilTypeName"].ToString();
+
+                ProductList.Add(TempList);
+            }
+        }
+        return ProductList;
+    }
 
     public static List<BusinessHours> GetBusinessHours()
     {
@@ -89,6 +116,38 @@ public class DataAccessLayer
         return BusinessHoursList;
     }
 
+    public static List<ProductImages> GetProductImages(int productId)
+    {
+        List<ProductImages> ProductImagesList = new List<ProductImages>();
+
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
+        Cmd.CommandText = @"
+            SELECT * FROM Images
+            INNER JOIN ProductImages
+                ON ProductImages.FkImageId = Images.Id
+            WHERE ProductImages.FkProductId = @ProductId";
+
+        Cmd.Parameters.Add("@ProductId", SqlDbType.Int).Value = productId;
+
+        Cmd.Connection = Conn;
+        Conn.Open();
+        SqlDataReader Reader = Cmd.ExecuteReader();
+
+        while (Reader.Read())
+        {
+            ProductImages TempList = new ProductImages();
+
+            TempList.ImageId = (int)Reader["Id"];
+            TempList.FileName = Reader["Name"].ToString();
+            TempList.ProductId = (int)Reader["FkProductId"];
+
+            ProductImagesList.Add(TempList);
+        }
+        Conn.Close();
+
+        return ProductImagesList;
+    }
 
 
     /// <summary>

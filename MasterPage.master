@@ -33,7 +33,7 @@
                                 <a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'>Butikken</a>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <asp:SqlDataSource runat="server" ID="ShopSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
+                        <asp:SqlDataSource runat="server" ID="ShopSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
                             SelectCommand="SELECT TOP 1 [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
                         <ul>
                             <asp:Repeater ID="CategoriesRpt" runat="server" DataSourceID="NavSqlDataSource">
@@ -41,9 +41,8 @@
                                     <li><a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'><%# Eval("Name") %></a></li>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            <asp:SqlDataSource runat="server" ID="NavSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
-                                SelectCommand="SELECT [Id], [Name] FROM [Categories]">
-                            </asp:SqlDataSource>
+                            <asp:SqlDataSource runat="server" ID="NavSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
                         </ul>
                     </li>
                     <li><a href="Contact.aspx">Kontakt</a></li>
@@ -103,13 +102,13 @@
                             <span id="Product">Produkt</span><span id="Price">Pris</span>
                         </div>
                         <div id="CartMiddle">
-                            <%--<asp:Repeater ID="CartContentRpt" runat="server">
-                            <ItemTemplate>
-                                <%# Eval("ProductAmount") %><%# Eval("ProductName")%><%# Eval("ProductPrice") %>
-                            </ItemTemplate>
-                        </asp:Repeater>--%>
+                            <asp:Repeater ID="CartContentRpt" runat="server">
+                                <ItemTemplate>
+                                    <span id="ProductAmount"><%# Eval("Amount") %></span><a href='<%# "ProductInfo.aspx?ItemId=" + Eval("Id")%>'><%# Eval("Name")%></a><span id="ProductPrice"><%# Eval("Price") %></span>
+                                </ItemTemplate>
+                            </asp:Repeater>
 
-                            <span id="ProductAmount">Amount</span><a href="#">Produktnavn</a><span id="ProductPrice">Pris</span>
+
 
                         </div>
                         <div id="CartBottom">

@@ -15,8 +15,13 @@
                 </SelectParameters>
             </asp:SqlDataSource>
 
-            <asp:GridView ID="ProductsGv" runat="server" AutoGenerateColumns="False" DataSourceID="ProductListSqlDataSource" DataKeyNames="Id" OnRowCommand="ProductsGv_OnRowCommand">
+            <asp:GridView ID="ProductsGv" runat="server" AutoGenerateColumns="False" DataSourceID="ProductListSqlDataSource" DataKeyNames="Id, Name, Price" OnRowCommand="ProductsGv_OnRowCommand">
                 <Columns>
+                    <asp:TemplateField HeaderText="Stk">
+                        <ItemTemplate>
+                            <asp:HiddenField ID="HiddenFieldId" Value='<%# Eval("Id") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     
                     <asp:TemplateField HeaderText="Tilføj">
                         <ItemTemplate>
@@ -26,20 +31,15 @@
                     
                     <asp:TemplateField HeaderText="Stk">
                         <ItemTemplate>
-                            <asp:TextBox ID="AmountTbx" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="AmountTbx" Text="1" runat="server"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:BoundField DataField="Name" HeaderText="Produkt navn" SortExpression="Name"></asp:BoundField>
                     <asp:BoundField DataField="Price" HeaderText="Pris" SortExpression="Price"></asp:BoundField>
 
-                   <%-- <asp:TemplateField HeaderText="mere info">
-                        <ItemTemplate>
-                            <asp:Button ID="MoreBtn" runat="server" Text='Info' CommandArgument="Id"  CommandName="more" />
-                        </ItemTemplate>
-                    </asp:TemplateField>--%>
-
                     <asp:ButtonField CommandName="More" HeaderText="mere info" Text="Info"></asp:ButtonField>
+                    
                 </Columns>
             </asp:GridView>
 

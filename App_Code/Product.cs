@@ -9,12 +9,12 @@ using System.Web;
 /// </summary>
 public class Product
 {
-    private int _id;
+    private int _productId;
     private string _name;
     private int _soilTypeId;
     private string _soilType;
-    private int _cultivationTypeId;
-    private string _cultivationType;
+    private int _cultivationTimeId;
+    private string _cultivationTime;
     private int _productNumber;
     private string _description;
     private int _stockMax;
@@ -31,10 +31,10 @@ public class Product
 		//
 	}
 
-    public int Id
+    public int ProductId
     {
-        get { return _id; }
-        set { _id = value; }
+        get { return _productId; }
+        set { _productId = value; }
     }
 
     public string Name
@@ -55,16 +55,16 @@ public class Product
         set { _soilType = value; }
     }
 
-    public int CultivationTypeId
+    public int CultivationTimeId
     {
-        get { return _cultivationTypeId; }
-        set { _cultivationTypeId = value; }
+        get { return _cultivationTimeId; }
+        set { _cultivationTimeId = value; }
     }
 
-    public string CultivationType
+    public string CultivationTime
     {
-        get { return _cultivationType; }
-        set { _cultivationType = value; }
+        get { return _cultivationTime; }
+        set { _cultivationTime = value; }
     }
 
     public int ProductNumber
