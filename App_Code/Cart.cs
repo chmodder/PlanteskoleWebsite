@@ -210,7 +210,7 @@ public class Cart
         foreach (ProductsInCart Product in CartList)
         {
             //Hvis produktet er fundet
-            if (productId != null && Product.Id == (int)productId)
+            if (Product.Id == productId)
             {
                 //Så fjernes alle variabler der hører til Cart list af typen ProductsInCart, hvor Id'et matcher productId input
                 CartList.Remove(Product);
@@ -231,10 +231,12 @@ public class Cart
 
     //}
 
-    public void CreateOrder()
-    {
+    //public void CreateOrder(int CostumerId, int PriceTotal, int OrderState)
+    //{
+    //    //List<ProductsInCart> TempCartList = CartList;
+    //    Order NewOrder = new Order(CostumerId, PriceTotal, OrderState, this.GetType().Cart);
 
-    }
+    //}
 
     #endregion
 }

@@ -24,21 +24,6 @@ public partial class Checkout : System.Web.UI.Page
         PriceAllContentLbl.Text = C2Cart.PriceAllContent.ToString(CultureInfo.InvariantCulture) + " Kr.";
     }
 
-    //private float priceforall()
-    //{
-    //    Cart TempCart = new Cart();
-    //    float TempPrice = 0;
-
-    //    foreach (var item in TempCart.CartList)
-    //    {
-
-    //        TempPrice =+ item.Price;
-    //    }
-
-    //    return TempPrice;
-    //}
-
-
     protected void CheckoutGv_OnRowCommand(object sender, GridViewCommandEventArgs e)
     {
         ////Get productId
@@ -63,6 +48,18 @@ public partial class Checkout : System.Web.UI.Page
 
     protected void OrderBtn_Click(object sender, EventArgs e)
     {
-        //Until ACL is created UserId will be Hardcoded/constant, if userId is needed
+        //Opretter et nyt objekt af typen Cart
+        Cart C4Cart = new Cart();
+
+        //Henter Sessionen kurv til kurv
+        C4Cart.TakeCart();
+
+        //Check userid. Else redirect to login and save page in session
+        
+        //CostumerID is hardcoded until ACL is working
+        //Orderstate 1 = Order created
+        Order CreateNewOrder = new Order(1, 1, C4Cart);
+
+        Response.Redirect("OrderConfirmation.aspx");
     }
 }
