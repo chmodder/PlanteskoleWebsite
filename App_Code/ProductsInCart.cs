@@ -44,6 +44,8 @@ public class ProductsInCart
     {
         get { return _amount * _price; }
     }
+
+
     #endregion
 
     #region CONSTRUCTORS

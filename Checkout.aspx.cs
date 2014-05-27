@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +19,24 @@ public partial class Checkout : System.Web.UI.Page
         //Viser Kurven i "CheckoutGv"
         CheckoutGv.DataSource = C2Cart.CartList;
         CheckoutGv.DataBind();
+
+
+        PriceAllContentLbl.Text = C2Cart.PriceAllContent.ToString(CultureInfo.InvariantCulture) + " Kr.";
     }
+
+    //private float priceforall()
+    //{
+    //    Cart TempCart = new Cart();
+    //    float TempPrice = 0;
+
+    //    foreach (var item in TempCart.CartList)
+    //    {
+
+    //        TempPrice =+ item.Price;
+    //    }
+
+    //    return TempPrice;
+    //}
 
 
     protected void CheckoutGv_OnRowCommand(object sender, GridViewCommandEventArgs e)
@@ -40,6 +58,7 @@ public partial class Checkout : System.Web.UI.Page
         //Viser Kurven i "CheckoutGv"
         CheckoutGv.DataSource = C3Cart.CartList;
         CheckoutGv.DataBind();
+
     }
 
     protected void OrderBtn_Click(object sender, EventArgs e)

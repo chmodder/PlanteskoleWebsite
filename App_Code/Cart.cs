@@ -12,6 +12,7 @@ public class Cart
     #region FIELDS
 
     private List<ProductsInCart> _cartList;
+    //private float _priceAllContent;
 
     #endregion
 
@@ -22,6 +23,21 @@ public class Cart
         get { return _cartList; }
         set { _cartList = value; }
     }
+
+
+    public float PriceAllContent
+    {
+        get
+        {
+            float test = 0;
+            foreach (var ProductsInCart in _cartList)
+            {
+                test += ProductsInCart.PriceTotal;
+            }
+            return test;
+        }
+    }
+
 
     #endregion
 
@@ -34,6 +50,10 @@ public class Cart
     {
         //liste kaldet "Cart" med plads til produkter
         CartList = new List<ProductsInCart>();
+        //foreach (var ProductsInCart in _cartList)
+        //{
+        //    this.PriceAllContent += ProductsInCart.PriceTotal;
+        //}
     }
 
     #endregion
@@ -116,6 +136,7 @@ public class Cart
         Rpt.DataSource = this.CartList;
         Rpt.DataBind();
     }
+
 
     ///// <summary>
     ///// Adds 1 item to Cart. Takes 1 Argument of type DataKey
@@ -212,7 +233,7 @@ public class Cart
 
     public void CreateOrder()
     {
-        
+
     }
 
     #endregion
