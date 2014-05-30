@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Web;
 
 /// <summary>
@@ -202,6 +203,94 @@ public class DataAccessLayer
         return PageContentList;
     }
 
+    /// <summary>
+    /// Returns permissionslist for RoleId
+    /// </summary>
+    /// <param name="RoleId"></param>
+    /// <returns></returns>
+    internal static List<Privileges> GetUserPermissions(object RoleId)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand cmd = new SqlCommand();
+
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.CommandText = @"SELECT P.Id, P.Name, P.CodeName, P.Description
+                            FROM RolePrivileges RP
+                            INNER JOIN Privileges P
+                                ON P.Id = RP.FkPrivilegeId
+                            WHERE RP.FkRoleId = @RoleId";
+
+        cmd.Parameters.Add("@RoleId", SqlDbType.Int).Value = Convert.ToInt32(RoleId);
+
+        cmd.Connection = conn;
+
+        conn.Open();
+
+        List<Privileges> PermissionsList = new List<Privileges>();
+
+        SqlDataReader reader = cmd.ExecuteReader();
+
+        foreach (var item in reader)
+        {
+            Privileges TempPrivilege = new Privileges();
+
+            TempPrivilege.Id = (int)reader["Id"];
+            TempPrivilege.CodeName = (string)reader["CodeName"];
+            TempPrivilege.Name = (string)reader["Name"];
+            TempPrivilege.Description = (string)reader["Description"];
+
+            PermissionsList.Add(TempPrivilege);
+
+        }
+
+        conn.Close();
+        return PermissionsList;
+    }
+
+    //Returns UserData in DataTable format by either userid or username
+    //Uses optional parameters
+    public static DataTable GetUserData(int id)
+    {
+
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
+
+        DataTable dt = new DataTable();
+
+        Cmd.CommandText = @"
+            SELECT * FROM Users
+            WHERE Users.Id = @id";
+
+        Cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+        Cmd.Connection = Conn;
+
+        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+        da.Fill(dt);
+
+        return dt;
+    }
+
+    public static DataTable GetUserData(string userName)
+    {
+
+        SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand Cmd = new SqlCommand();
+
+        DataTable dt = new DataTable();
+
+        Cmd.CommandText = @"
+            SELECT * FROM Users
+            WHERE Users.UserName = @userName";
+
+        Cmd.Parameters.Add("@userName", SqlDbType.Int).Value = userName;
+        Cmd.Connection = Conn;
+
+        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+        da.Fill(dt);
+
+        return dt;
+    }
+
     #region TESTING
     //    public static List<Product> GetAllProducts()
     //    {
@@ -242,6 +331,51 @@ public class DataAccessLayer
     //    }
 
     #endregion
+
+    #endregion
+
+    #region WRITE
+
+    /// <summary>
+    /// Creates new user in table Users. Returns UserId
+    /// </summary>
+    /// <param name="roleId"></param>
+    /// <param name="userName"></param>
+    /// <param name="email"></param>
+    /// <param name="passWord"></param>
+    /// <param name="firstName"></param>
+    /// <param name="lastName"></param>
+    /// <param name="address"></param>
+    /// <param name="zip"></param>
+    /// <param name="city"></param>
+    /// <returns>UserId</returns>
+    public static int CreateNewUser(int roleId, string userName, string email, string passWord, string firstName, string lastName, string address, int zip, string city)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand cmd = new SqlCommand(@"
+                                        INSERT INTO Users (UserName, PassWord, Email, FirstName, LastName, Address, ZipCode, City, FkRoleId)
+                                                    VALUES (@UserName, @PassWord, @Email, @FirstName, @LastName, @Address, @ZipCode, @City, @FkRoleId);
+                                        SELECT SCOPE IDENTITY() AS 'UserId'");
+
+        cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userName;
+        cmd.Parameters.Add("@PassWord", SqlDbType.NVarChar).Value = passWord;
+        cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+        cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = firstName;
+        cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = address;
+        cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = address;
+        cmd.Parameters.Add("@ZipCode", SqlDbType.Int).Value = zip;
+        cmd.Parameters.Add("@City", SqlDbType.NVarChar).Value = city;
+        cmd.Parameters.Add("@FkRoleId", SqlDbType.Int).Value = roleId;
+
+        cmd.Connection = conn;
+
+        conn.Open();
+        int ThisNewUserId = (int)cmd.ExecuteScalar();
+        conn.Close();
+
+        return ThisNewUserId;
+
+    }
 
     #endregion
 
