@@ -18,6 +18,16 @@ public partial class Admin_MasterPage : System.Web.UI.MasterPage
         //Privileges is set according to users role
 
         //sets Role to Guest, and sets userprivileges accordingly, if no user is found in session
+        if (Session["UserId"] == null)
+        {
+            if (Session["RoleId"] == null)
+            {
+                //RoleId 3 is guest-role
+                Session["RoleId"] = 3;
+            }
+
+        }
+        Users.SetUserPrivilegeSession();
         if ((int)Session["RoleId"] != 1)
         {
             Response.Redirect("../Default.aspx");

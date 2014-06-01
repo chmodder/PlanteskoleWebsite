@@ -11,6 +11,7 @@ using Access = MyCustomNameSpace.Access;
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     public static string LastPage;
+
     protected void Page_Init(object sender, EventArgs e)
     {
 
@@ -27,14 +28,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 //RoleId 3 is guest-role
                 Session["RoleId"] = 3;
             }
-            if ((int)Session["RoleId"] == 1)
-            {
-                Response.Redirect("../Admin/Default.aspx");
-            }
             
-
         }
         Users.SetUserPrivilegeSession();
+        //if (Session["UserRole"].ToString() == "admin")
+        //{
+        //    Response.Redirect("~/Admin/Default.aspx");
+        //}
         #endregion
 
         ////Test stuff

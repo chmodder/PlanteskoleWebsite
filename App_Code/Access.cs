@@ -89,6 +89,8 @@ namespace MyCustomNameSpace
             {
                 case "customer": HttpContext.Current.Session["NotificationMsg"] = "Velkommen " + userName;
                     break;
+                case "admin": HttpContext.Current.Response.Redirect("~/Admin/Default.aspx");
+                    break;
                 case "guest": HttpContext.Current.Session["NotificationMsg"] = "Login mislykkedes";
                     break;
             }
@@ -131,7 +133,7 @@ namespace MyCustomNameSpace
         public void LogOut()
         {
             HttpContext.Current.Session.Abandon();
-            HttpContext.Current.Response.Redirect("../Default.aspx");
+            HttpContext.Current.Response.Redirect("~/Default.aspx");
         }
 
         #endregion
