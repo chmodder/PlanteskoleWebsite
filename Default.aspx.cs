@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        //Response.Write("Page_Init");
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         CurrentPage DefaultPage = new CurrentPage();
@@ -39,6 +44,7 @@ public partial class _Default : System.Web.UI.Page
 
         BusinessHoursRpt.DataSource = DataAccessLayer.GetBusinessHours();
         BusinessHoursRpt.DataBind();
-        
+
+        //Response.Write("Page_Load");
     }
 }

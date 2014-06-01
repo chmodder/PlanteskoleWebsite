@@ -54,12 +54,19 @@ public partial class Checkout : System.Web.UI.Page
         //Henter Sessionen kurv til kurv
         C4Cart.TakeCart();
 
-        //Check userid. Else redirect to login and save page in session
-        
-        //CostumerID is hardcoded until ACL is working
-        //Orderstate 1 = Order created
-        Order CreateNewOrder = new Order(1, 1, C4Cart);
+        //Check userid if userid exists in session (if user is logged in). Else redirect to login and save page in session
+        if (Session["UserId"] != null)
+        {
+            int CustomerId = (int)Session["UserId"];
+            //Orderstate 1 = Order created
+            Order CreateNewOrder = new Order(CustomerId, 1, C4Cart);
+            Response.Redirect("OrderConfirmation.aspx");
+        }
+        else
+        {
+            Session["LastWebform"] = Request.RawUrl;
+            Response.Redirect("LoginPage.aspx");
+        }
 
-        Response.Redirect("OrderConfirmation.aspx");
     }
 }

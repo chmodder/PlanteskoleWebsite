@@ -213,7 +213,6 @@ public class DataAccessLayer
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
         SqlCommand cmd = new SqlCommand();
 
-        cmd.CommandType = CommandType.StoredProcedure;
         cmd.CommandText = @"SELECT P.Id, P.Name, P.CodeName, P.Description
                             FROM RolePrivileges RP
                             INNER JOIN Privileges P
@@ -259,6 +258,8 @@ public class DataAccessLayer
 
         Cmd.CommandText = @"
             SELECT * FROM Users
+            INNER JOIN Roles
+                ON Users.FkRoleId = Roles.Id
             WHERE Users.Id = @id";
 
         Cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
@@ -280,9 +281,11 @@ public class DataAccessLayer
 
         Cmd.CommandText = @"
             SELECT * FROM Users
+            INNER JOIN Roles
+                ON Users.FkRoleId = Roles.Id
             WHERE Users.UserName = @userName";
 
-        Cmd.Parameters.Add("@userName", SqlDbType.Int).Value = userName;
+        Cmd.Parameters.Add("@userName", SqlDbType.NVarChar).Value = userName;
         Cmd.Connection = Conn;
 
         SqlDataAdapter da = new SqlDataAdapter(Cmd);
@@ -290,6 +293,8 @@ public class DataAccessLayer
 
         return dt;
     }
+
+    
 
     #region TESTING
     //    public static List<Product> GetAllProducts()

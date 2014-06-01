@@ -16,7 +16,7 @@
     </asp:GridView>
 
     
-    <asp:Label ID="Label1" runat="server" Text='Samlet pris: '></asp:Label>
+    <asp:Label ID="TotalPriceLbl" runat="server" Text='Samlet pris: '></asp:Label>
     <asp:Label ID="PriceAllContentLbl" runat="server" Text=''></asp:Label>
     <asp:Button ID="OrderBtn" runat="server" Text="Bestil" OnClick="OrderBtn_Click" />
 </asp:Content>

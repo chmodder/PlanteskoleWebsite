@@ -20,6 +20,7 @@ public class Users
     private int _zip;
     private string _city;
     private int _roleId;
+    private string _roleName;
 
     public Users()
     {
@@ -40,16 +41,17 @@ public class Users
         {
             foreach (DataColumn Column in ThisUserDt.Columns)
             {
-                _userId = Convert.ToInt32(Dr["Id"]);
+                UserId = Convert.ToInt32(Dr["Id"]);
                 UserName = Dr["UserName"].ToString();
                 PassWord = Dr["PassWord"].ToString();
-                FirstName = Dr["Email"].ToString();
+                Email = Dr["Email"].ToString();
                 FirstName = Dr["FirstName"].ToString();
                 LastName = Dr["LastName"].ToString();
                 Address = Dr["Address"].ToString();
                 Zip = Convert.ToInt32(Dr["ZipCode"]);
                 City = Dr["City"].ToString();
                 RoleId = Convert.ToInt32(Dr["FkRoleId"]);
+                RoleName = Dr["RoleName"].ToString();
             }
         }
 
@@ -78,7 +80,7 @@ public class Users
         City = city;
 
         //Creates User in DB and Sets this _userId field value
-        _userId = DataAccessLayer.CreateNewUser(RoleId, UserName, Email, PassWord, firstName, lastName, Address, Zip, City);
+        UserId = DataAccessLayer.CreateNewUser(RoleId, UserName, Email, PassWord, firstName, lastName, Address, Zip, City);
 
         //Creates/Updates Session "privileges" with privileges set to new user
         SetUserPrivilegeSession();
@@ -91,17 +93,17 @@ public class Users
     /// </summary>
     /// <param name="userName"></param>
     /// <returns>bool</returns>
-    public static bool UserNameIsInDB(string userName)
+    public static bool UserNameIsInDb(string userName)
     {
-        bool UserIsInDB = false;
+        bool UserIsInDb = false;
         DataTable UserFoundDt = DataAccessLayer.GetUserData(userName);
 
         if (UserFoundDt.Columns.Contains(userName))
         {
-            UserIsInDB = true;
+            UserIsInDb = true;
         }
 
-        return UserIsInDB;
+        return UserIsInDb;
     }
 
     public static bool Allowed(string codeName)
@@ -110,12 +112,12 @@ public class Users
 
         List<Privileges> PermisionsList = new List<Privileges>();
         PermisionsList = (List<Privileges>)HttpContext.Current.Session["Privileges"];
-        foreach (Privileges item in PermisionsList)
+        foreach (Privileges Item in PermisionsList)
         {
-            if (item.CodeName == codeName)
-                tempbool = true;
+            if (Item.CodeName == codeName)
+            {tempbool = true; break;}
             else
-                tempbool = false;
+            {tempbool = false;}
         }
 
         return tempbool;
@@ -123,14 +125,21 @@ public class Users
 
     public static void SetUserPrivilegeSession()
     {
-        //Gets RoleId from seeion
+        //Gets RoleId from session
         object RoleId = HttpContext.Current.Session["RoleId"];
 
         //Check user privileges Privileges (Arraylist)
         HttpContext.Current.Session["Privileges"] = DataAccessLayer.GetUserPermissions(RoleId);
     }
 
+    //    public static void SetUserPrivilegeSession(roleId)
+    //{
+    //    //Gets RoleId from session
+    //    object RoleId = HttpContext.Current.Session["RoleId"];
 
+    //    //Check user privileges Privileges (Arraylist)
+    //    HttpContext.Current.Session["Privileges"] = DataAccessLayer.GetUserPermissions(RoleId);
+    //}
 
     #endregion
 
@@ -138,6 +147,7 @@ public class Users
     public int UserId
     {
         get { return _userId; }
+        set { _userId = value; }
     }
 
     public string UserName
@@ -192,6 +202,12 @@ public class Users
     {
         get { return _lastName; }
         set { _lastName = value; }
+    }
+
+    public string RoleName
+    {
+        get { return _roleName; }
+        set { _roleName = value; }
     }
 
     #endregion
