@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Admin_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+
+    <%-- START BootStrap related stuff --%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../../assets/js/html5shiv.js"></script>
+      <script src="../../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <%-- END BootStrap related stuff --%>
+
+    <link href="../Css/Normalize.css" rel="stylesheet" />
+    <link href="../Css/Style.css" rel="stylesheet" />
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <section id="Banner">
+            <asp:Image ID="BannerImg" alt="Banner" runat="server" ImageUrl="~/Img/Banner.jpg" />
+        </section>
+        <!--End Banner-->
+
+
+        <section id="NavContainer">
+            <div id="Nav">
+                <ul>
+                    <li><a href="../Admin/Default.aspx">Admin Forside</a></li>
+                   <%-- <li>
+                        <asp:Repeater ID="ShopRpt" runat="server" DataSourceID="ShopSqlDataSource">
+                            <ItemTemplate>
+                                <a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'>Butikken</a>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <asp:SqlDataSource runat="server" ID="ShopSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                            SelectCommand="SELECT TOP 1 [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
+                        <ul>
+                            <asp:Repeater ID="CategoriesRpt" runat="server" DataSourceID="NavSqlDataSource">
+                                <ItemTemplate>
+                                    <li><a href='<%#"Shop.aspx?CatId=" +  Eval("Id") %>'><%# Eval("Name") %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                            <asp:SqlDataSource runat="server" ID="NavSqlDataSource" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
+                        </ul>
+                    </li>--%>
+                    <li><a href="../Admin/ShopItems.aspx">Shop indhold</a></li>
+                    <li><a href="../Admin/Links.aspx">Links</a></li>
+                    <li><a href="../Admin/Users.aspx">Brugere</a></li>
+                    <li><a href="../Admin/OrdersAndStock.aspx">Bestilling</a></li>
+                    <li><a href="../Admin/ShopInfo.aspx">Shopinfo</a></li>
+                </ul>
+
+            </div>
+        </section>
+        <!--End Nav-->
+
+        <div id="Main">
+
+            <div id="MainContainer">
+
+                <section id="Left">
+                    <%--I venstre side vises titlen ”Mest populære” med link til de 3 mest solgte produkter i foregående måned (Figur 3). 
+                    Herunder vises tre bannere som linker til andre hjemmesider.--%>
+
+                    <h3 class="ChildContainerHeader">Undermenu</h3>
+                    <article id="MostPopularContainer">
+                        <ul>
+                     <asp:ContentPlaceHolder ID="ContentPlaceHolderLeft" runat="server">
+                         
+                     </asp:ContentPlaceHolder>  
+                        </ul>
+                    </article>
+
+
+                </section>
+                <!--End Left-->
+
+
+
+                <section id="Middle">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </section>
+                <!--End Middle-->
+
+
+                <section id="Right">
+
+                    <div id="LogoutBox" runat="server">
+                        <asp:Button ID="LogOutBtn" CssClass="LogInOutBtn" runat="server" Text="Log ud" OnClick="LogOutBtn_Click" />
+                    </div>
+
+                    <div id="MessageBox" runat="server">
+                        <asp:Label ID="MessageLbl" runat="server" Text=""></asp:Label>
+                    </div>
+
+                </section>
+                <!--End Right-->
+
+            </div>
+            <!--End MainContainer-->
+
+            <div id="Footer">
+                <asp:Label ID="FooterNameLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterAddressLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterZipCityLbl" runat="server" Text=""></asp:Label>
+                <asp:Label ID="FooterPhoneLbl" runat="server" Text=""></asp:Label>
+            </div>
+            <!--End Footer-->
+
+        </div>
+        <!--End Main-->
+
+
+
+    </form>
+
+    <%-- START BootStrap related stuff --%>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <%-- END BootStrap related stuff --%>
+</body>
+
+</html>
