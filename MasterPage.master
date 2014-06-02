@@ -17,8 +17,8 @@
     <![endif]-->
     <%-- END BootStrap related stuff --%>
 
-    <link href="Css/Normalize.css" rel="stylesheet" />
-    <link href="Css/Style.css" rel="stylesheet" />
+    <link href="~/Css/Normalize.css" rel="stylesheet" />
+    <link href="~/Css/Style.css" rel="stylesheet" />
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
