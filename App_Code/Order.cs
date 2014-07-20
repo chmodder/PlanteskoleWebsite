@@ -98,8 +98,7 @@ public class Order
             cmdP.Parameters.Add("@priceEach", SqlDbType.Decimal).Value = product.Price;  
             cmdP.Parameters.Add("@priceTotal", SqlDbType.Decimal).Value = product.PriceTotal;
 
-            cmdP.ExecuteNonQuery();
-            
+            cmdP.ExecuteNonQuery();    
         }
 
         conn.Close();
