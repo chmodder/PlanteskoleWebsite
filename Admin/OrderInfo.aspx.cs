@@ -17,10 +17,10 @@ public partial class Admin_OrderInfo : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (!IsPostBack)
-        //{
-        //    OrderStateDdl.SelectedValue = GetCurrentOrderStatus().ToString();
-        //}
+        if (!IsPostBack)
+        {
+            OrderStateDdl.SelectedValue = GetCurrentOrderStatus().ToString();
+        }
         //Label1.Text = OrderStateDdl.SelectedItem.Value;
         //OrderStateDdl.SelectedValue = GetCurrentOrderStatus().ToString();
         
